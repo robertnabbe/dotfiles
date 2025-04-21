@@ -16,7 +16,7 @@ antigen bundle osx
 antigen bundle brew
 antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle mafredri/zsh-async
+# antigen bundle mafredri/zsh-async
 
 # Load the theme
 antigen theme robbyrussell
@@ -32,44 +32,38 @@ antigen apply
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 
 # MANPATH
-# If silicon chip: export MANPATH="/opt/homebrew/Cellar/coreutils/libexec/gnuman:$MANPATH"
-# export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-# export MANPATH="/opt/homebrew/Cellar/coreutils/libexec/gnuman:$MANPATH"
+# If silicon chip:
+export MANPATH="/opt/homebrew/Cellar/coreutils/libexec/gnuman:$MANPATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
+export MANPATH="/opt/homebrew/Cellar/coreutils/libexec/gnuman:$MANPATH"
 
 # NVM PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # Default editor
-# export EDITOR=code
+export EDITOR=code
 
 # Homebrew
-# If silicon chip: export PATH=/opt/homebrew/bin:$PATH
-# export PATH=/usr/local/sbin:$PATH
+# If silicon chip:
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 
 # Composer
-export PATH=$PATH:$HOME/.composer/vendor/bin
+# export PATH=$PATH:$HOME/.composer/vendor/bin
 
 # Previous MySQL version
 # If silicon chip: export PATH="/opt/homebrew/Cellar/mysql@5.7/bin:$PATH"
 # export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="/opt/homebrew/Cellar/mysql@5.7/bin:$PATH"
+# export PATH="/opt/homebrew/Cellar/mysql@5.7/bin:$PATH"
+
+# export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
+# export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
+# export PATH="/opt/homebrew/sbin:$PATH"
 
 # ==============================
 # Aliases
 # ==============================
-
-# Navigation
-alias ..="cd .."
-alias cd..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
 
 # Show/hide hidden files in Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
@@ -121,6 +115,3 @@ alias hosts='sudo vi /etc/hosts'
 
 # Recursively delete `.DS_Store` files
 alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
-export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
