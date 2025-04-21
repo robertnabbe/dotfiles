@@ -4,8 +4,7 @@
 
 # Load Antigen
 # You can find the installation location with `brew ls antigen`
-# If silicon chip: source /opt/homebrew/Cellar/antigen/2.2.3/share/antigen/antigen.zsh
-# source /usr/local/Cellar/antigen/2.2.3/share/antigen/antigen.zsh
+# If silicon chip:
 source /opt/homebrew/Cellar/antigen/2.2.3/share/antigen/antigen.zsh
 
 # Bootstrap
@@ -23,6 +22,9 @@ antigen theme robbyrussell
 
 # Start
 antigen apply
+
+# Open VSCode from cli
+# alias code="open -a /Applications/Visual\ Studio\ Code.app"
 
 # ==============================
 # Exports
@@ -92,8 +94,7 @@ alias brewperm='sudo chown -R $(whoami) $(brew --prefix)/*'
 # Update brew packages
 alias brewup='brew -v update; brew upgrade --force-bottle; brew cleanup; brew doctor'
 
-# Open VSCode from cli
-alias code="open -a /Applications/Visual\ Studio\ Code.app"
+
 
 # Clear log files
 alias clearlog='sudo rm -rf /var/log/asl/*.asl'
