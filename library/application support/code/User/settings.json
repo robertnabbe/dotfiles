@@ -1,0 +1,66 @@
+{
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.preferredLightColorTheme": "One Dark Pro",
+  "workbench.preferredDarkColorTheme": "One Dark Pro",
+  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": true,
+  "editor.wordWrap": "on",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "prettier.bracketSpacing": false,
+  "prettier.arrowParens": "avoid",
+  "prettier.printWidth": 100,
+  "prettier.singleQuote": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  // PHP CS FIXER
+  "php-cs-fixer.executablePath": "${extensionPath}/php-cs-fixer.phar",
+  // "php-cs-fixer.executablePath": "php-cs-fixer",
+  "php-cs-fixer.executablePathWindows": "", //eg: php-cs-fixer.bat
+  "php-cs-fixer.onsave": true,
+  "php-cs-fixer.rules": "@Symfony",
+  "php-cs-fixer.config": "/Users/robert/Code/.php-cs-fixer.txt;",
+  "php-cs-fixer.allowRisky": true,
+  "php-cs-fixer.pathMode": "override",
+  "php-cs-fixer.exclude": [],
+  "php-cs-fixer.autoFixBySemicolon": false,
+  "[php]": {
+    "editor.defaultFormatter": "junstyle.php-cs-fixer"
+  },
+  "explorer.autoReveal": false,
+  "php-cs-fixer.lastDownload": 1730564243939,
+  "workbench.tree.renderIndentGuides": "always",
+  "editor.lineHeight": 20,
+  "editor.largeFileOptimizations": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.tabCompletion": "on",
+  "emmet.triggerExpansionOnTab": true,
+  "files.associations": {
+    "*.js": "javascriptreact"
+  },
+  "workbench.startupEditor": "none",
+  "extensions.autoUpdate": false,
+  "window.zoomLevel": 1,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.empty.hint": "hidden",
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  }
+}
