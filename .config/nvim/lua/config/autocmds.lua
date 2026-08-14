@@ -7,16 +7,29 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
----@type vim.api.keyset.highlight
+---@type vim.api.keyset.get_hl_info?
 local default_line
-
----@type vim.api.keyset.highlight
+---@type vim.api.keyset.get_hl_info?
 local default_cursor
+
+local function capture_line_number_defaults()
+  default_line = vim.api.nvim_get_hl(0, {
+    name = "LineNr",
+    link = false,
+  })
+
+  default_cursor = vim.api.nvim_get_hl(0, {
+    name = "CursorLineNr",
+    link = false,
+  })
+end
+
 vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
   callback = function()
-    -- store defaults for the lineNr color swaps below
-    default_line = vim.api.nvim_get_hl(0, { name = "LineNr" })
-    default_cursor = vim.api.nvim_get_hl(0, { name = "CursorLineNr" })
+    capture_line_number_defaults()
+
+    vim.api.nvim_set_hl(0, "SnacksDashboardDir", { fg = "#616161" })
 
     -- the window separator line
     vim.api.nvim_set_hl(0, "WinSeparator", {
@@ -66,6 +79,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 local function set_line_number_colors(mode)
+  -- if vim.bo.filetype == "dashboard" then
+  --   return
+  -- end
+
   if mode == "i" then
     -- Insert
     vim.api.nvim_set_hl(0, "LineNr", { fg = "#50FA7B" })
@@ -76,8 +93,11 @@ local function set_line_number_colors(mode)
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#F1FA8C", bold = true })
   else
     -- Normal: restore theme defaults
-    vim.api.nvim_set_hl(0, "LineNr", default_line)
-    vim.api.nvim_set_hl(0, "CursorLineNr", default_cursor)
+    if not default_line or not default_cursor then
+      capture_line_number_defaults()
+    end
+    vim.api.nvim_set_hl(0, "LineNr", default_line --[[@as vim.api.keyset.highlight]])
+    vim.api.nvim_set_hl(0, "CursorLineNr", default_cursor --[[@as vim.api.keyset.highlight]])
   end
 end
 
@@ -87,5 +107,39 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave", "ModeChanged" }, {
   group = group,
   callback = function()
     set_line_number_colors(vim.fn.mode())
+  end,
+})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() ~= 1 then
+      return
+    end
+
+    local arg = vim.fn.argv(0) --[[@as string]]
+
+    if arg == "" or vim.fn.isdirectory(arg) ~= 1 then
+      return
+    end
+
+    vim.schedule(function()
+      local win = vim.api.nvim_get_current_win()
+      local dir_buf = vim.api.nvim_get_current_buf()
+
+      local buf = vim.api.nvim_create_buf(false, true)
+      vim.api.nvim_win_set_buf(win, buf)
+      pcall(vim.api.nvim_buf_delete, dir_buf, { force = true })
+
+      -- sections/formats come from the merged config, not this call
+      ---@diagnostic disable-next-line: missing-fields
+      Snacks.dashboard.open({ buf = buf, win = win })
+    end)
+  end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "SnacksDashboardOpened",
+  callback = function()
+    vim.api.nvim_set_hl(0, "SnacksDashboardDir", { link = "repeat" })
   end,
 })

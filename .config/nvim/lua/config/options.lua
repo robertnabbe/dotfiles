@@ -29,3 +29,5 @@ vim.g.terminal_color_12 = nil
 vim.g.terminal_color_13 = nil
 vim.g.terminal_color_14 = nil
 vim.g.terminal_color_15 = nil
+
+vim.api.nvim_create_user_command("W", "write", {})

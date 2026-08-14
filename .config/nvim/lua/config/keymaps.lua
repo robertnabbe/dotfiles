@@ -100,3 +100,7 @@ vim.keymap.set("n", "g/", function()
 end, {
   desc = "Goto Definition in split",
 })
+
+vim.keymap.set("n", "<leader>/", function()
+  Snacks.picker.grep()
+end, { desc = "Grep" })
