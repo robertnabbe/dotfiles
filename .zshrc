@@ -4,18 +4,18 @@
 
 # Load Antigen
 # You can find the installation location with `brew ls antigen`
-# If silicon chip: source /opt/homebrew/Cellar/antigen/2.2.3/share/antigen/antigen.zsh
-# source /usr/local/Cellar/antigen/2.2.3/share/antigen/antigen.zsh
+# If silicon chip:
 source /opt/homebrew/Cellar/antigen/2.2.3/share/antigen/antigen.zsh
 
 # Bootstrap
 antigen use oh-my-zsh
 
 # Plugins
+antigen bundle osx
 antigen bundle brew
 antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle mafredri/zsh-async
+# antigen bundle mafredri/zsh-async
 
 # Load the theme
 antigen theme robbyrussell
@@ -31,48 +31,45 @@ antigen apply
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 
 # MANPATH
-# If silicon chip: export MANPATH="/opt/homebrew/Cellar/coreutils/libexec/gnuman:$MANPATH"
-# export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-# export MANPATH="/opt/homebrew/Cellar/coreutils/libexec/gnuman:$MANPATH"
+# If silicon chip:
+export MANPATH="/opt/homebrew/Cellar/coreutils/libexec/gnuman:$MANPATH"
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export MANPATH="/opt/homebrew/Cellar/coreutils/libexec/gnuman:$MANPATH"
 
 # NVM PATH
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Default editor (code/cursor/nvim)
-# export EDITOR=code
+# Default editor
+export EDITOR=nvim
 
 # Homebrew
-# If silicon chip: export PATH=/opt/homebrew/bin:$PATH
-# export PATH=/usr/local/sbin:$PATH
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
+# If silicon chip:
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
 
 # Composer
-export PATH=$PATH:$HOME/.composer/vendor/bin
+# export PATH=$PATH:$HOME/.composer/vendor/bin
 
-# MySQL 5.7
+# Previous MySQL version
 # If silicon chip: export PATH="/opt/homebrew/Cellar/mysql@5.7/bin:$PATH"
 # export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="/opt/homebrew/Cellar/mysql@5.7/bin:$PATH"
+# export PATH="/opt/homebrew/Cellar/mysql@5.7/bin:$PATH"
 
-# php 7.4
-export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
+# export PATH="/opt/homebrew/opt/php@7.4/bin:$PATH"
+# export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
+# export PATH="/opt/homebrew/sbin:$PATH"
+
+# export AWS_PROFILE=chiroup
+# export AWS_SDK_LOAD_CONFIG=1
 
 # ==============================
 # Aliases
 # ==============================
 
-# Navigation
-alias ..="cd .."
-alias cd..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
+# git
+alias gcln='git clean -fd'
+alias gbsc='git branch --show-current | pbcopy'
 
 # Show/hide hidden files in Finder
 alias show='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder'
@@ -92,20 +89,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# Maintenance
-alias maint='sudo periodic daily weekly monthly'
-
-# Fix brew permissions
-alias brewperm='sudo chown -R $(whoami) $(brew --prefix)/*'
-
-# Update brew packages
-alias brewup='brew -v update; brew upgrade --force-bottle; brew cleanup; brew doctor'
-
 # Clear log files
 alias clearlog='sudo rm -rf /var/log/asl/*.asl'
-
-# Clear mail
-alias clearmail='sudo rm /var/mail/$(whoami)'
 
 # Update antigen
 alias antup='antigen update; antigen cleanup'
@@ -113,11 +98,16 @@ alias antup='antigen update; antigen cleanup'
 # Clear antigen cache
 alias antreset='rm ~/.antigen/init.zsh'
 
-# System maintenance and updates
-alias sysup='brewup; antup; maint; clearlog; clearmail'
-
-# Hosts
-alias hosts='sudo vi /etc/hosts'
-
 # Recursively delete `.DS_Store` files
 alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
+
+# AWS nonsense
+export AWS_SDK_LOG_LEVEL=warn
+export PATH="$HOME/.local/bin:$PATH"
+
+# itermocil/window configs 
+source ~/.zsh_chiroup
+
+# source functions file
+source ~/.zshfuncs
+
