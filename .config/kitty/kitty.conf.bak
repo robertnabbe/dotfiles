@@ -340,7 +340,7 @@ font_size 15.0
 #: setting also controls blinking text, which blinks in exact rhythm
 #: with the cursor.
 
-# cursor_trail 0
+cursor_trail 3
 
 #: Set this to a value larger than zero to enable a "cursor trail"
 #: animation. This is an animation that shows a "trail" following the
@@ -356,7 +356,7 @@ font_size 15.0
 #: cursor_trail_start_threshold to control when a cursor trail is
 #: started.
 
-# cursor_trail_decay 0.1 0.4
+cursor_trail_decay 0.1 0.4
 
 #: Controls the decay times for the cursor trail effect when the
 #: cursor_trail is enabled. This option accepts two positive float
@@ -368,7 +368,7 @@ font_size 15.0
 #: trail. Adjust these values to control how quickly the cursor trail
 #: fades away.
 
-# cursor_trail_start_threshold 2
+cursor_trail_start_threshold 5
 
 #: Set the distance threshold for starting the cursor trail. This
 #: option accepts a positive integer value that represents the minimum
@@ -1060,7 +1060,7 @@ font_size 15.0
 #: works on Wayland. See also kitty --position to specify the position
 #: when launching kitty.
 
-enabled_layouts *
+enabled_layouts splits
 
 #: The enabled window layouts. A comma separated list of layout names.
 #: The special value all means all layouts. The first listed layout
@@ -1076,7 +1076,7 @@ enabled_layouts *
 #: start_resizing_window. The cells value is used for horizontal
 #: resizing, and the lines value is used for vertical resizing.
 
-# window_border_width 0.5pt
+window_border_width 2pt
 
 #: The width of window borders. Can be either in pixels (px) or pts
 #: (pt). Values in pts will be rounded to the nearest number of pixels
@@ -1144,12 +1144,12 @@ enabled_layouts *
 #: left, top, top-right, left, center, right, bottom-left, bottom,
 #: bottom-right.
 
-# active_border_color #00ff00
+active_border_color #f0c
 
 #: The color for the border of the active window. Set this to none to
 #: not draw borders around the active window.
 
-# inactive_border_color #cccccc
+inactive_border_color #f0c
 
 #: The color for the border of inactive windows.
 
@@ -1158,7 +1158,7 @@ enabled_layouts *
 #: The color for the border of inactive windows in which a bell has
 #: occurred.
 
-# inactive_text_alpha 1.0
+inactive_text_alpha 0.9
 
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
@@ -1260,7 +1260,7 @@ hide_window_decorations no
 
 #: Tab bar {{{
 
-# tab_bar_edge bottom
+tab_bar_edge bottom
 
 #: The edge to show the tab bar on, top or bottom.
 
@@ -1275,7 +1275,7 @@ hide_window_decorations no
 #: The second number is the margin between the tab bar and the
 #: contents of the current tab.
 
-# tab_bar_style fade
+tab_bar_style powerline
 
 #: The tab bar style, can be one of:
 
@@ -1316,7 +1316,7 @@ hide_window_decorations no
 #: such as goto_tab, next_tab, previous_tab, etc. are automatically
 #: restricted to work only on matching tabs.
 
-# tab_bar_align left
+tab_bar_align left
 
 #: The horizontal alignment of the tab bar, can be one of: left,
 #: center, right.
@@ -1343,12 +1343,12 @@ hide_window_decorations no
 #: can change the number of cells used by adding/removing entries to
 #: this list.
 
-# tab_separator " ┇"
+# tab_separator " | "
 
 #: The separator between tabs in the tab bar when using separator as
 #: the tab_bar_style.
 
-# tab_powerline_style angled
+tab_powerline_style round
 
 #: The powerline separator style between tabs in the tab bar when
 #: using powerline as the tab_bar_style, can be one of: angled,
@@ -1366,7 +1366,7 @@ hide_window_decorations no
 #: The maximum number of cells that can be used to render the text in
 #: a tab. A value of zero means that no limit is applied.
 
-tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.last_focused_progress_percent}{title}"
+tab_title_template "{bell_symbol}{activity_symbol}[{index}] {title}"
 
 #: A template to render the tab title. The default just renders the
 #: title with optional symbols for bell and activity. If you wish to
@@ -1429,17 +1429,17 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.l
 #: {bell_symbol} or {activity_symbol} are not present in the template,
 #: they are prepended to it.
 
-# active_tab_title_template none
+active_tab_title_template none
 
 #: Template to use for active tabs. If not specified falls back to
 #: tab_title_template.
 
-# active_tab_foreground   #000
-# active_tab_background   #eee
-# active_tab_font_style   bold-italic
-# inactive_tab_foreground #444
-# inactive_tab_background #999
-# inactive_tab_font_style normal
+active_tab_foreground   #F00
+active_tab_background   #eee
+active_tab_font_style   bold
+inactive_tab_foreground #444
+inactive_tab_background #000
+inactive_tab_font_style normal
 
 #: Tab bar colors and styles.
 
@@ -1685,7 +1685,7 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.l
 #: interactive mode and reads its startup rc files. Environment
 #: variables are expanded in this setting.
 
-# editor .
+editor nvim
 
 #: The terminal based text editor (such as vim or nano) to use when
 #: editing the kitty config file or similar tasks.
@@ -1743,7 +1743,7 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.l
 #: See rc_custom_auth <https://sw.kovidgoyal.net/kitty/remote-
 #: control/#rc-custom-auth> for details.
 
-# allow_remote_control no
+allow_remote_control yes
 
 #: Allow other programs to control kitty. If you turn this on, other
 #: programs can control all aspects of kitty, including sending text
@@ -2100,7 +2100,7 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{tab.l
 #: use the background color of the currently active window and finally
 #: you can use an arbitrary color, such as #12af59 or red.
 
-# macos_option_as_alt no
+macos_option_as_alt yes
 
 #: Use the Option key as an Alt key on macOS. With this set to no,
 #: kitty will use the macOS native Option+Key to enter Unicode
@@ -2782,6 +2782,8 @@ macos_show_window_title_in window
 # map kitty_mod+f11 toggle_fullscreen
 map ctrl+cmd+f    toggle_fullscreen
 
+map ctrl+cmd+return launch --location=vsplit
+
 #: Toggle maximized
 
 # map kitty_mod+f10 toggle_maximized
@@ -2940,12 +2942,16 @@ map ctrl+cmd+f    toggle_fullscreen
 #::  E.g. map ctrl+shift+alt+h send_text all Hello World
 
 ## Kitty + ZSH fixes
-# move to begging/end of line
+# move to beginning/end of line
 map cmd+left send_text all \x01
 map cmd+right send_text all \x05
 
+# vertical split
+# map ctrl+\ launch --location=vsplit
+map ctrl+= launch --location=vsplit
+
 # rm entire line
-map cmd+backspace send_text all \x15 # \x15 = ctrl+u
+# map cmd+backspace send_text all \x15 # \x15 = ctrl+u
 
 #::  You can tell kitty to send arbitrary (UTF-8) encoded text to the
 #::  client program when pressing specified shortcut keys. For
@@ -3000,3 +3006,9 @@ map cmd+backspace send_text all \x15 # \x15 = ctrl+u
 #: }}}
 
 #: }}}
+
+
+# BEGIN_KITTY_THEME
+# Dracula
+include current-theme.conf
+# END_KITTY_THEME
