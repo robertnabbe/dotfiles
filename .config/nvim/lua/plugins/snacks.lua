@@ -1,4 +1,4 @@
-local max_width = 100
+local dashboard_max_width = 110
 
 return {
   "folke/snacks.nvim",
@@ -9,10 +9,10 @@ return {
     dashboard = {
       lazy = false,
       enabled = true,
-      width = max_width,
+      width = dashboard_max_width,
       pane_gap = 1,
       preset = {
-        header = vim.trim([[
+        header = [[
  ██████   █████                                ███                 
 ░░██████ ░░███                                ░░░                  
  ░███░███ ░███   ██████   ██████  █████ █████ ████  █████████████  
@@ -21,7 +21,7 @@ return {
  ░███  ░░█████ ░███░░░  ░███ ░███ ░░███ ███   ░███  ░███ ░███ ░███ 
  █████  ░░█████░░██████ ░░██████   ░░█████    █████ █████░███ █████
 ░░░░░    ░░░░░  ░░░░░░   ░░░░░░     ░░░░░    ░░░░░ ░░░░░ ░░░ ░░░░░ 
-]]),
+]],
       },
       sections = {
         { section = "header", height = 7 },
@@ -49,7 +49,7 @@ return {
                 { " ", hl = "icon" },
                 { " Current branch", hl = "title" },
                 { "\n" },
-                { "   " .. (vim.fn.systemlist({ "git", "branch", "--show-current" })[1] or ""), hl = "Statement" },
+                { "    " .. (vim.fn.systemlist({ "git", "branch", "--show-current" })[1] or ""), hl = "Statement" },
               },
               enabled = in_git,
               padding = 1,
@@ -67,7 +67,7 @@ return {
                 local lines = {
                   { " ", hl = "icon" },
                   { " Open PRs", hl = "title" },
-                  { (" "):rep(math.max(1, max_width - 11 - 1)) }, -- padding so P sits on ther far right edge (11=title+icon,1=P)
+                  { (" "):rep(math.max(1, dashboard_max_width - 11 - 1)) }, -- padding so P sits on ther far right edge (11=title+icon,1=P)
                   { "P", hl = "SnacksDashboardKey" },
                   { "\n" },
                 }
@@ -93,11 +93,11 @@ return {
                 end
                 -- { icon, icon hl }
                 local review_style = {
-                  APPROVED = { " ", "DiagnosticOk" },
-                  CHANGES_REQUESTED = { "", "DiagnosticError" },
-                  REVIEW_REQUIRED = { " ", "DiagnosticWarn" },
+                  APPROVED = { " ", "Character" },
+                  CHANGES_REQUESTED = { " ", "DiagnosticError" },
+                  REVIEW_REQUIRED = { " ", "DiagnosticWarn" },
                 }
-                local title_w = 70
+                local title_w = dashboard_max_width - 30
                 for _, line in ipairs(out) do
                   local num, title, author, review = line:match("^(%d+)\t(.-)\t(.-)\t(.-)$")
                   if num then
