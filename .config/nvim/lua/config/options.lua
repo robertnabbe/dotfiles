@@ -31,3 +31,6 @@ vim.g.terminal_color_14 = nil
 vim.g.terminal_color_15 = nil
 
 vim.api.nvim_create_user_command("W", "write", {})
+vim.api.nvim_create_user_command("Dashboard", function()
+  Snacks.dashboard()
+end, { desc = "Open snacks dashboard" })

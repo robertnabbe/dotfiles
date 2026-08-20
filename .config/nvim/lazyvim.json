@@ -5,8 +5,7 @@
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.lang.typescript.vtsls",
-    "lazyvim.plugins.extras.ui.dashboard-nvim"
+    "lazyvim.plugins.extras.lang.typescript.vtsls"
   ],
   "install_version": 8,
   "news": {
