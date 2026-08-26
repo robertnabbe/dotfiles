@@ -67,10 +67,16 @@ vim.api.nvim_create_autocmd("CursorHold", {
   group = "LSPHoverAuto",
   pattern = "*",
   callback = function()
-    -- Only trigger if the completion menu is NOT open and no other float is present
-    if vim.fn.pumvisible() == 0 and vim.api.nvim_win_get_config(0).relative == "" then
-      vim.lsp.buf.hover()
+    if vim.fn.pumvisible() ~= 0 or vim.api.nvim_win_get_config(0).relative ~= "" then
+      return
     end
+    -- Skip if this buffer's hover float is still open: calling hover() again
+    -- while it exists makes Neovim focus that window instead of redrawing it.
+    local existing = vim.b.lsp_floating_preview
+    if existing and vim.api.nvim_win_is_valid(existing) then
+      return
+    end
+    vim.lsp.buf.hover({ focus = false })
   end,
 })
 
@@ -104,3 +110,7 @@ end, {
 vim.keymap.set("n", "<leader>/", function()
   Snacks.picker.grep()
 end, { desc = "Grep" })
+
+-- makes sure change ops don't add to register/clipboard
+vim.keymap.set("n", "c", '"_c', { noremap = true })
+vim.keymap.set("n", "C", '"_C', { noremap = true })

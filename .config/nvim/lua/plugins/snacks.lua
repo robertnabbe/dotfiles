@@ -269,6 +269,26 @@ return {
         },
       },
     },
+    indent = {
+      enabled = true,
+      scope = {
+        enabled = true,
+        hl = "SnacksIndentScope",
+      },
+      chunk = {
+        enabled = true,
+        only_current = false,
+        priority = 200,
+        hl = "SnacksIndentChunk",
+        char = {
+          corner_top = "╭",
+          corner_bottom = "╰",
+          horizontal = "─",
+          vertical = "│",
+          arrow = ">",
+        },
+      },
+    },
     terminal = {
       win = {
         position = "bottom",
