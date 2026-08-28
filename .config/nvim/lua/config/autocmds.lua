@@ -57,12 +57,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.ts", "*.tsx" },
-  callback = function(args)
-    local filename = vim.api.nvim_buf_get_name(args.buf)
-    if filename:match("%.spec%.") then
-      return
-    end
-
+  callback = function()
     require("utils.imports").canonicalize()
   end,
 })
