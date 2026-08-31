@@ -60,15 +60,27 @@ return {
         { section = "startup" },
         function()
           local in_git = Snacks.git.get_root() ~= nil
+          local branch = vim.fn.systemlist({ "git", "branch", "--show-current" })[1] or ""
+          local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
           local cmds = {
             {
+              pane = 1,
               height = 2,
               text = {
                 { " ", hl = "icon" },
                 { " Current branch", hl = "title" },
+                { (" "):rep(math.max(1, dashboard_max_width - 17 - 6)) }, -- padding so CWD sits on the right edge (17=branch title+icon, 6=CWD title+icon)
+                { " ", hl = "icon" },
+                { " CWD", hl = "title" },
                 { "\n" },
                 { "    ", hl = "DiagnosticWarn" },
-                { (vim.fn.systemlist({ "git", "branch", "--show-current" })[1] or ""), hl = "DiagnosticUnderlineInfo" },
+                { branch, hl = "DiagnosticUnderlineInfo" },
+                {
+                  (" "):rep(
+                    math.max(1, dashboard_max_width - 5 - vim.fn.strdisplaywidth(branch) - vim.fn.strdisplaywidth(cwd))
+                  ),
+                },
+                { cwd, hl = "DiagnosticUnderlineInfo" },
               },
               enabled = in_git,
               padding = 1,
@@ -87,14 +99,14 @@ return {
                   refresh_prs() -- first open: kick off the initial fetch
                 end
 
-                local icon = " " -- so we can swap it out with spinner anim
+                local section_icon = " " -- so we can swap it out with spinner anim
                 if gh.prs.fetching then
                   local frame = math.floor((vim.uv or vim.loop).hrtime() / 8e7) % #spinner_frames + 1
-                  icon = spinner_frames[frame] .. " "
+                  section_icon = spinner_frames[frame] .. " "
                 end
 
                 local lines = {
-                  { icon, hl = "icon" },
+                  { section_icon, hl = "icon" },
                   { " Open PRs", hl = "title" },
                   { (" "):rep(math.max(1, dashboard_max_width - 11 - 1)) }, -- padding so P sits on the far right edge (11=title+icon,1=P)
                   { "P", hl = "SnacksDashboardKey" },
