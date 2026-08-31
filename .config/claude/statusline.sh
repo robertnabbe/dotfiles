@@ -17,6 +17,7 @@ MODEL_ID=$(echo "$input" | jq -r '.model.id')
 SESSION_NAME=$(echo "$input" | jq -r '.session_name // ""')
 BRANCH=""
 git rev-parse --git-dir >/dev/null 2>&1 && BRANCH="$(git branch --show-current 2>/dev/null)"
+MODEL_EFFORT=$(echo "$input" | jq -r '.effort.level')
 
 TOTAL_COST=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
 COST_FORMATTED=$(printf '$%.2f' "$TOTAL_COST")
@@ -65,7 +66,7 @@ else
   WORKTREE=""
 fi
 
-echo -e "${WORKTREE}${BLUE}[$MODEL_ID]${RESET}: ${BOLD_RED}${BRANCH}${RESET}"
+echo -e "${WORKTREE}${BLUE}[$MODEL_ID${RESET}(${MODEL_EFFORT})${BLUE}]${RESET}: ${BOLD_RED}${BRANCH}${RESET}"
 # if session name is not empty, print it
 if [ "$SESSION_NAME" != "" ]; then
   echo -e "Session: ${CYAN}${SESSION_NAME}${RESET}"
