@@ -8,6 +8,10 @@ for from, to in pairs(aliases) do
   reverse_aliases[to] = from
 end
 
+local function escape_pattern(s)
+  return (s:gsub("[%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%1"))
+end
+
 function M.canonicalize()
   local buf = vim.api.nvim_get_current_buf()
   local filename = vim.api.nvim_buf_get_name(buf)
@@ -21,7 +25,7 @@ function M.canonicalize()
     local original = line
 
     for from, to in pairs(replacements) do
-      line = line:gsub(from, to)
+      line = line:gsub(escape_pattern(from), to)
     end
 
     if line ~= original then
