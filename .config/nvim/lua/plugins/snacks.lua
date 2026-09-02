@@ -70,7 +70,7 @@ return {
                 { " ", hl = "icon" },
                 { " Current branch", hl = "title" },
                 { (" "):rep(math.max(1, dashboard_max_width - 17 - 6)) }, -- padding so CWD sits on the right edge (17=branch title+icon, 6=CWD title+icon)
-                { " ", hl = "icon" },
+                { "󰜥 ", hl = "icon" },
                 { " CWD", hl = "title" },
                 { "\n" },
                 { "    ", hl = "DiagnosticWarn" },
@@ -80,7 +80,7 @@ return {
                     math.max(1, dashboard_max_width - 5 - vim.fn.strdisplaywidth(branch) - vim.fn.strdisplaywidth(cwd))
                   ),
                 },
-                { cwd, hl = "DiagnosticUnderlineInfo" },
+                { cwd, hl = "Statement" },
               },
               enabled = in_git,
               padding = 1,
