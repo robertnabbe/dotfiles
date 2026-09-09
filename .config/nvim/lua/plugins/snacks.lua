@@ -180,8 +180,8 @@ return {
 
                 -- { icon, icon hl }
                 local review_style = {
-                  APPROVED = { " ", "Character" },
-                  CHANGES_REQUESTED = { " ", "DiagnosticError" },
+                  APPROVED = { " ", "Character" },
+                  CHANGES_REQUESTED = { " ", "DiagnosticError" },
                   REVIEW_REQUIRED = { " ", "DiagnosticWarn" },
                 }
                 local checks_style = {
@@ -223,21 +223,6 @@ return {
                 return lines
               end)(),
             },
-            -- {
-            --   icon = " ",
-            --   title = "Open PRs",
-            --   cmd = 'gh pr list --search "draft:false" -L 10',
-            --   key = "P",
-            --   action = function()
-            --     vim.fn.jobstart("gh pr list --web", { detach = true })
-            --   end,
-            --   height = 14,
-            --   section = "terminal",
-            --   enabled = in_git,
-            --   padding = 1,
-            --   ttl = 5 * 60,
-            --   indent = 3,
-            -- },
             {
               icon = " ",
               title = "Recent Files",
