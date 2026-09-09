@@ -320,7 +320,7 @@ return {
       enabled = true,
       scope = {
         enabled = true,
-        hl = "SnacksIndentScope",
+        hl = "Conditional",
       },
       chunk = {
         enabled = true,
@@ -333,6 +333,13 @@ return {
           horizontal = "─",
           vertical = "│",
           arrow = ">",
+        },
+      },
+      animate = {
+        enabled = true,
+        duration = {
+          step = 50,
+          total = 250,
         },
       },
     },
