@@ -345,8 +345,9 @@ return {
     },
     terminal = {
       win = {
-        position = "bottom",
-        height = 15,
+        style = "float",
+        -- position = "bottom",
+        height = 30,
         border = "rounded",
       },
     },
