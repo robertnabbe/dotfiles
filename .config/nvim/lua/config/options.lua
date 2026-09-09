@@ -10,6 +10,9 @@ vim.opt.linebreak = true
 vim.opt.autoindent = true
 vim.lsp.inlay_hint.enable(false)
 
+-- match team.settings.json prettier.requireConfig: only format when a prettier config exists
+vim.g.lazyvim_prettier_needs_config = true
+
 -- colorscheme handling
 --  terminal
 vim.api.nvim_set_hl(0, "Terminal", { bg = "NONE" })
