@@ -86,7 +86,7 @@ return {
             hl = "Statement",
           },
           {
-            "                                                                   n.vim                                                                       ",
+            "                                                                    N·V I M                                                                        ",
             hl = "Normal",
           },
         },
