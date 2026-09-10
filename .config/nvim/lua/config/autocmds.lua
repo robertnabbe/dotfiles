@@ -31,6 +31,14 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
     vim.api.nvim_set_hl(0, "SnacksDashboardDir", { fg = "#616161" })
 
+    local statement = vim.api.nvim_get_hl(0, { name = "Statement", link = false })
+    local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+    vim.api.nvim_set_hl(0, "StatementKnockout", {
+      fg = normal.bg,
+      bg = statement.fg,
+      bold = true,
+    })
+
     -- the window separator line
     vim.api.nvim_set_hl(0, "WinSeparator", {
       fg = "#BD93F9", -- dracula purple
