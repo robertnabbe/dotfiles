@@ -114,3 +114,18 @@ end, { desc = "Grep" })
 -- makes sure change ops don't add to register/clipboard
 vim.keymap.set("n", "c", '"_c', { noremap = true })
 vim.keymap.set("n", "C", '"_C', { noremap = true })
+
+vim.diagnostic.config({
+  virtual_text = false,
+  float = {
+    border = "rounded",
+    source = "if_many",
+    header = "",
+    focusable = false,
+    max_width = 80,
+  },
+})
+
+vim.keymap.set("n", "<leader>cx", vim.diagnostic.open_float, {
+  desc = "Show diagnostic",
+})
