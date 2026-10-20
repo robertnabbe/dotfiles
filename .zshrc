@@ -60,9 +60,6 @@ export PATH=/usr/local/sbin:$PATH
 # export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
 # export PATH="/opt/homebrew/sbin:$PATH"
 
-# export AWS_PROFILE=chiroup
-# export AWS_SDK_LOAD_CONFIG=1
-
 # ==============================
 # Aliases
 # ==============================
@@ -94,6 +91,9 @@ alias clearlog='sudo rm -rf /var/log/asl/*.asl'
 
 # Update antigen
 alias antup='antigen update; antigen cleanup'
+
+# Update fast-moving brew casks
+alias brewup='brew upgrade claude-code@latest gh nvim'
 
 # Clear antigen cache
 alias antreset='rm ~/.antigen/init.zsh'
