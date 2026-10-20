@@ -1,1 +1,3 @@
 .DS_Store
+
+.config/nvim/lua/utils/imports_cup.lua

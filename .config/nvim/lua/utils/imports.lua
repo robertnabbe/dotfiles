@@ -1,7 +1,12 @@
 local M = {}
 
-local aliases = {
-}
+local has_cup_paths = vim.api.nvim_get_runtime_file("lua/utils/imports_cup.lua", false)[1] ~= nil
+local aliases = has_cup_paths and require("utils.imports_cup") or {}
+
+if vim.tbl_isempty(aliases) then
+  M.canonicalize = function() end
+  return M
+end
 
 local reverse_aliases = {}
 for from, to in pairs(aliases) do
