@@ -70,6 +70,9 @@ vim.api.nvim_create_autocmd("CursorHold", {
     if vim.fn.pumvisible() ~= 0 or vim.api.nvim_win_get_config(0).relative ~= "" then
       return
     end
+    if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/hover" }) == 0 then
+      return
+    end
     -- Skip if this buffer's hover float is still open: calling hover() again
     -- while it exists makes Neovim focus that window instead of redrawing it.
     local existing = vim.b.lsp_floating_preview
