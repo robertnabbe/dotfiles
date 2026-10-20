@@ -1,0 +1,13 @@
+[include] path=~/.gitconfig.local
+[core]
+	editor = nvim
+[diff]
+	tool = code
+[difftool "code"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+	tool = code
+[mergetool "code"]
+  cmd = code --wait $MERGED
+[color]
+	ui = auto
