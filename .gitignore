@@ -1,3 +1,6 @@
 .DS_Store
+hosts.yml
+*.local
+.zshrc.zwc
 
 .config/nvim/lua/utils/imports_cup.lua
