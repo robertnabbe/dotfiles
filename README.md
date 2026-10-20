@@ -9,5 +9,8 @@ homebrew:
 apps:
 
 ```bash
-brew install antigen coreutils ffmpeg findutls gh git itermocil lame lua neovim python ripgrep sqlite vim webp x264 zsh zstd
+brew tap TomAnthony/brews
+brew install antigen coreutils findutils gh git neovim vim ripgrep fd fzf lazygit ffmpeg tmux itermocil
+brew install --cask kitty
+curl https://get.volta.sh | bash && volta install node
 ```
