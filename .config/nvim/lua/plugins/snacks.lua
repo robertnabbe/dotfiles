@@ -105,7 +105,7 @@ return {
         { section = "startup" },
         function()
           local in_git = Snacks.git.get_root() ~= nil
-          local branch = in_git and vim.fn.systemlist({ "git", "branch", "--show-current" })[1] or false
+          local branch = vim.fn.systemlist({ "git", "branch", "--show-current" })[1] or ""
           local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
           local cmds = {
             {
@@ -114,29 +114,20 @@ return {
               text = {
                 { " ", hl = "icon" },
                 { " Current branch", hl = "title" },
-                { (" "):rep(math.max(1, dashboard_max_width - 17 - 6)) }, -- padding so CWD sits on the right edge (17=branch title+icon, 6=CWD title+icon)
+                { (" "):rep(math.max(1, dashboard_max_width - 17 - 5)) }, -- padding so CWD sits on the right edge (17=branch title+icon, 6=CWD title+icon)
                 { "~", hl = "icon" },
                 { " CWD", hl = "title" },
                 { "\n" },
                 { "    ", hl = "DiagnosticWarn" },
-                {
-                  branch or "(not in git repo)",
-                  hl = branch and "DiagnosticUnderlineInfo" or "NonText",
-                },
+                { branch, hl = "DiagnosticUnderlineInfo" },
                 {
                   (" "):rep(
-                    math.max(
-                      1,
-                      dashboard_max_width
-                        - 5
-                        - (branch and vim.fn.strdisplaywidth(branch) or 17)
-                        - vim.fn.strdisplaywidth(cwd)
-                    )
+                    math.max(1, dashboard_max_width - 5 - vim.fn.strdisplaywidth(branch) - vim.fn.strdisplaywidth(cwd))
                   ),
                 },
                 { cwd, hl = "Statement" },
               },
-              -- enabled = in_git,
+              enabled = in_git,
               padding = 1,
               indent = 0,
             },
