@@ -110,6 +110,9 @@ end, {
   desc = "Goto Definition in split",
 })
 
+-- Open definition in a V-split
+vim.keymap.set("n", "gv", "<cmd>vsplit | lua vim.lsp.buf.definition()<CR>", { desc = "Goto Definition (V-split)" })
+
 vim.keymap.set("n", "<leader>/", function()
   Snacks.picker.grep()
 end, { desc = "Grep" })
