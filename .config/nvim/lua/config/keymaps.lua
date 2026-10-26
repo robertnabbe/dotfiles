@@ -135,3 +135,21 @@ vim.diagnostic.config({
 vim.keymap.set("n", "<leader>cx", vim.diagnostic.open_float, {
   desc = "Show diagnostic",
 })
+
+-- jump to the outermost top-level fn definition (e.g. the component)
+vim.keymap.set("n", "[T", function()
+  local node = vim.treesitter.get_node()
+
+  if not node then
+    return
+  end
+
+  while node:parent() and node:parent():type() ~= "program" do
+    node = node:parent()
+  end
+
+  local row, col = node:start()
+
+  vim.cmd("normal! m'")
+  vim.api.nvim_win_set_cursor(0, { row + 1, col })
+end, { desc = "Jump to top-level definition" })
