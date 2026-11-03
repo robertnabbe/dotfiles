@@ -145,15 +145,21 @@ return {
                 end
 
                 local section_icon = " " -- so we can swap it out with spinner anim
+                local fetched_prs = "--"
                 if gh.prs.fetching then
                   local frame = math.floor((vim.uv or vim.loop).hrtime() / 8e7) % #spinner_frames + 1
                   section_icon = spinner_frames[frame] .. " "
+                else
+                  local pr_count = gh.prs.out and #gh.prs.out or 0
+                  local padded_prs = string.format("%2d", pr_count) -- pad with space if 1 digit
+                  fetched_prs = padded_prs
                 end
 
+                local pr_limit = tostring(gh.prs.limit)
                 local lines = {
                   { section_icon, hl = "icon" },
-                  { " Open PRs", hl = "title" },
-                  { (" "):rep(math.max(1, dashboard_max_width - 11 - 1)) }, -- padding so P sits on the far right edge (11=title+icon,1=P)
+                  { " Open PRs (" .. fetched_prs .. "/" .. pr_limit .. ")", hl = "title" },
+                  { (" "):rep(math.max(1, dashboard_max_width - 19 - 1)) }, -- padding so P sits on the far right edge (11=title+icon,1=P)
                   { "P", hl = "SnacksDashboardKey" },
                   { "\n" },
                 }
