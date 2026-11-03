@@ -1,6 +1,12 @@
 local M = {}
+local PR_LIMIT = 15
 
-M.prs = { out = nil, err = false, fetching = false }
+M.prs = {
+  out = nil,
+  err = false,
+  fetching = false,
+  limit = PR_LIMIT,
+}
 
 local login
 function M.me()
@@ -65,7 +71,7 @@ function M.fetch_prs(on_change)
     "list",
     "--draft=false",
     "-L",
-    "10",
+    tostring(PR_LIMIT),
     "--json",
     "number,title,author,reviewDecision,statusCheckRollup",
   }, { text = true }, function(res)
