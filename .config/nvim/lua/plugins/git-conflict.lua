@@ -46,12 +46,12 @@ local function resolve_and_next()
 end
 
 return {
-  "akinsho/git-conflict.nvim",
+  "robertnabbe/git-conflict.nvim",
   version = "*",
   event = "BufReadPre",
   keys = {
     { "<leader>gx", open_first_conflict, desc = "Open first conflicted file" },
     { "<leader>cw", resolve_and_next, desc = "Save + stage + next conflicted file" },
   },
-  opts = {},
+  opts = { jump_to_next_conflict = true },
 }
