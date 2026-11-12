@@ -37,3 +37,9 @@ vim.api.nvim_create_user_command("W", "write", {})
 vim.api.nvim_create_user_command("Dashboard", function()
   Snacks.dashboard()
 end, { desc = "Open snacks dashboard" })
+
+-- map :E to :e, so we don't by accident run :EditQuery
+vim.api.nvim_create_user_command("E", "edit <args>", {
+  nargs = "?",
+  complete = "file",
+})
