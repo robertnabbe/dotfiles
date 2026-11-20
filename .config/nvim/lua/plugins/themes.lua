@@ -1,6 +1,4 @@
 return {
-  { "catppuccin/nvim" },
-  { "folke/tokyonight.nvim" },
   {
     "Mofiqul/dracula.nvim",
     lazy = false,
@@ -11,4 +9,6 @@ return {
   },
   { "rose-pine/neovim" },
   { "EdenEast/nightfox.nvim" },
+  { "scottmckendry/cyberdream.nvim" },
+  { "nyoom-engineering/oxocarbon.nvim" },
 }
