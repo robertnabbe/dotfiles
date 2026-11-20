@@ -69,25 +69,16 @@ return {
         -- ]],
         --
         header = {
-          {
-            "        _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_    \n",
-            hl = "Statement",
-          },
-          { "         |       |       |       |       |       |       |       |", hl = "Statement" },
+          { "    _|_     _|_     _|_     _|_     _|_     _|_    \n", hl = "Statement" },
+          { "     |       |       |", hl = "Statement" },
           { "N·V I M", hl = "StatementKnockout" },
-          { "|       |       |       |       |       |       |       |     \n", hl = "Statement" },
-          {
-            "    _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_     _|_\n",
-            hl = "Statement",
-          },
-          {
-            "     |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       | \n",
-            hl = "Statement",
-          },
+          { "|       |       |     \n", hl = "Statement" },
+          { "_|_     _|_     _|_     _|_     _|_     _|_     _|_\n", hl = "Statement" },
+          { " |       |       |       |       |       |       | \n", hl = "Statement" },
         },
       },
       sections = {
-        { section = "header" },
+        { section = "header", align = "center" },
         function()
           local v = vim.version()
 
